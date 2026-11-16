@@ -1,6 +1,6 @@
 [project]
 name = "exception-local-variable-collector"
-version = "0.1.0"
+version = "0.1.1"
 description = "Turns an exception's traceback frames into a bounded dict of local variables."
 requires-python = ">=3.10"
 dependencies = []
