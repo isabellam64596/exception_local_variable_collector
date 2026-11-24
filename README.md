@@ -33,3 +33,10 @@ Limits may be set to `None` to disable them.  Negative limits raise `ValueError`
 ## The awkward edge
 
 The collector cannot guarantee that `repr()` will succeed.  A value with a broken `__repr__` is recorded as `"<unrepresentable>"` rather than aborting the capture.  Similarly, `max_total_len` is enforced with a fixed per-variable overhead estimate, so the serialized payload is bounded but not byte-exact against any particular JSON encoder.
+
+## Design notes
+
+The window stores values eagerly rather than keeping running aggregates. Running
+sums drift with floating point over long streams, and recomputing from a small
+buffer is cheap enough that the drift is not worth the speed.
+
